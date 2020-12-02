@@ -108,7 +108,7 @@ ______
 
 ## `dataURLtoSVG(dataURL)` Function
 
-Naturally, a function like `SVGtoDataURL(svg)` needs a corresponding function which can perform the same transformation in reverse.
+Naturally, a function like `SVGtoDataURL(svg)`, above, needs a corresponding function which can perform the same transformation in reverse.
 
 `dataURLtoSVG(dataURL)` will convert the **Data URL** back into a valid, namespaced, well-formed **SVG**.
 
