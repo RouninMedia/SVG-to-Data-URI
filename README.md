@@ -55,7 +55,7 @@ const SVGToDataURI = (SVG) => {
   else {
   
     SVG = '';
-  	 SVG += '\n\n<!--\n\n';
+    SVG += '\n\n<!--\n\n';
     SVG += '  ⚠️ Ashiva Console:\n\n';
 
     if (SVGTitle !== undefined) {
