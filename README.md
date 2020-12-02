@@ -30,7 +30,7 @@ const SVGToDataURI = (SVG) => {
   // GET SVG TITLE
   const SVGTitle = mySVG.split('</title>')[0].split('<title>')[1];
   
-  // VERIFY SVG NAMESPACE MATCHES
+  // VERIFY SVG NAMESPACE
   const SVGNamespace = SVG.trim().replace(/\s+/g, ' ').substr(0, 39);
   const SVGNamespaceMatch = '<svg xmlns="http://www.w3.org/2000/svg"';
   const SVGNamespaceMatches = (SVGNamespace === SVGNamespaceMatch) ? true : false;
@@ -53,9 +53,9 @@ const SVGToDataURI = (SVG) => {
   }
 
   else {
-
-  	SVG = '';
-  	SVG += '\n\n<!--\n\n';
+  
+    SVG = '';
+  	 SVG += '\n\n<!--\n\n';
     SVG += '  ⚠️ Ashiva Console:\n\n';
 
     if (SVGTitle !== undefined) {
