@@ -1,6 +1,6 @@
-# SVG to Data URI
+# SVG to Data URL
 
-The function `SVGtoDataURI(svg)` converts any SVG into a **Data URI**.
+The function `SVGtoDataURL(svg)` converts any SVG into a **Data URL**.
 
 Before it does so, it verifies that the string it has been given to process is a **valid SVG**.
 
@@ -8,24 +8,24 @@ ______
 
 ## Step 1
 
-The function `SVGtoDataURI(svg)` verifies that the string passed to the function:
+The function `SVGtoDataURL(svg)` verifies that the string passed to the function:
 
  - has a valid **SVG Namespace**
  - represents **well-formed XML**
 
-If either or both conditions are not met, the `SVGtoDataURI(svg)` function will return a verbose error detailing how the string may be fixed.
+If either or both conditions are not met, the `SVGtoDataURL(svg)` function will return a verbose error detailing how the string may be fixed.
 
 ## Step 2
 
-If both the conditions above are met, the `SVGtoDataURI(svg)` function returns the validated SVG as a **Data URI**.
+If both the conditions above are met, the `SVGtoDataURL(svg)` function returns the validated SVG as a **Data URL**.
 
 _____
 
-## `SVGtoDataURI(svg)` Function
+## `SVGtoDataURL(svg)` Function
 
 ```
 
-const SVGtoDataURI = (SVG) => {
+const SVGtoDataURL = (SVG) => {
   
   // GET SVG TITLE
   const SVGTitle = mySVG.split('</title>')[0].split('<title>')[1];
@@ -40,7 +40,7 @@ const SVGtoDataURI = (SVG) => {
   const parsedDocument = XMLParser.parseFromString(SVG, 'image/svg+xml');
   const wellFormedXML = (parsedDocument.documentElement.nodeName.indexOf('parsererror') < 0) ? true : false;
 
-  // CONVERT SVG INTO DATA URI
+  // CONVERT SVG INTO DATA URL
   if ((SVGNamespaceMatches === true) && (wellFormedXML === true)) {
   
     SVG = SVG.replace(/(\s*\n)+\s*/g, ' ');
@@ -106,7 +106,13 @@ const SVGtoDataURI = (SVG) => {
 ```
 ______
 
-## `dataURItoSVG(dataURI)` Function
+## `dataURLtoSVG(dataURL)` Function
+
+Naturally, a function like `SVGtoDataURL(svg)` needs a corresponding function which can perform the same transformation in reverse.
+
+`dataURLtoSVG(dataURL)` will convert the **Data URL** back into a valid, namespaced, well-formed **SVG**.
+
+If the function cannot build an **SVG** out of the **Data URL**, it will return a verbose error, explaining why not.
 
 ```
 
