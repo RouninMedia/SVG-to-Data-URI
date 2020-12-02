@@ -104,3 +104,10 @@ const SVGtoDataURI = (SVG) => {
 }
 
 ```
+______
+
+## `dataURItoSVG(dataURI)` Function
+
+```
+
+```
