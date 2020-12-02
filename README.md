@@ -17,7 +17,7 @@ If either or both conditions are not met, the `SVGToDataURI(svg)` function will 
 
 ## Step 2
 
-If both the conditions above are met, the `SVGToDataURI(svg)` function will return the validated SVG as a **Data URI**.
+If both the conditions above are met, the `SVGToDataURI(svg)` function returns the validated SVG as a **Data URI**.
 
 _____
 
