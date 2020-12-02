@@ -1,15 +1,25 @@
 # SVG to Data URI
 
-The function `SVGToDataURI(svg)` will verify that the string passed to the function:
+The function `SVGToDataURI(svg)` converts any SVG into a **Data URI**, after first verifying that the string it has been given to process is a **valid SVG**.
+
+______
+
+## Step 1
+
+The function `SVGToDataURI(svg)` verifies that the string passed to the function:
 
  - has a valid **SVG Namespace**
  - represents **well-formed XML**
 
 If either or both conditions are not met, the `SVGToDataURI(svg)` function will return a verbose error detailing how the string may be fixed.
 
-If both of these conditions are met, the `SVGToDataURI(svg)` function will return the validated SVG as a **Data URI**.
+## Step 2
 
-## `SVGToDataURI(svg)`
+If both the conditions above are met, the `SVGToDataURI(svg)` function will return the validated SVG as a **Data URI**.
+
+_____
+
+## `SVGToDataURI(svg)` Function
 
 ```
 
