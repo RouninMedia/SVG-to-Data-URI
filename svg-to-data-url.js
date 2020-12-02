@@ -1,4 +1,4 @@
-const SVGtoDataURI = (SVG) => {
+const SVGtoDataURL = (SVG) => {
   
   // GET SVG TITLE
   const SVGTitle = mySVG.split('</title>')[0].split('<title>')[1];
@@ -13,7 +13,7 @@ const SVGtoDataURI = (SVG) => {
   const parsedDocument = XMLParser.parseFromString(SVG, 'image/svg+xml');
   const wellFormedXML = (parsedDocument.documentElement.nodeName.indexOf('parsererror') < 0) ? true : false;
 
-  // CONVERT SVG INTO DATA URI
+  // CONVERT SVG INTO DATA URL
   if ((SVGNamespaceMatches === true) && (wellFormedXML === true)) {
   
     SVG = SVG.replace(/(\s*\n)+\s*/g, ' ');
