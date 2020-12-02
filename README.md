@@ -1,6 +1,8 @@
 # SVG to Data URI
 
-The function `SVGToDataURI(svg)` converts any SVG into a **Data URI**, after first verifying that the string it has been given to process is a **valid SVG**.
+The function `SVGToDataURI(svg)` converts any SVG into a **Data URI**.
+
+Before it does so, it verifies that the string it has been given to process is a **valid SVG**.
 
 ______
 
