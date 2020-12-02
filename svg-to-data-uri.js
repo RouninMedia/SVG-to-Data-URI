@@ -1,4 +1,4 @@
-const SVGToDataURI = (SVG) => {
+const SVGtoDataURI = (SVG) => {
   
   // GET SVG TITLE
   const SVGTitle = mySVG.split('</title>')[0].split('<title>')[1];
