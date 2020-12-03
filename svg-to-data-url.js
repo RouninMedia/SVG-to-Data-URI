@@ -19,10 +19,19 @@ const SVGtoDataURL = (SVG) => {
     SVG = SVG.replace(/(\s*\n)+\s*/g, ' ');
     SVG = SVG.replace(/\>\s+\</g, '><');
     SVG = SVG.replace(/\s\/>/g, '/>');
-    SVG = SVG.replace(/\>/g, '%3E');
-    SVG = SVG.replace(/\</g, '%3C');
     SVG = SVG.replace(/\"/g, '\'');
-    SVG = 'data:image/svg+xml,' + SVG.trim();
+
+    const SVGCharacterArray = SVG.split('');
+
+    for (let i = 0; i < SVGCharacterArray.length; i++) {
+
+      if (SVGCharacterArray[i].match(/[A-Za-z0-9\.\,\;\:\/\_\=\-\~\'\s]/) === null) {
+
+      	SVGCharacterArray[i] = encodeURIComponent(SVGCharacterArray[i]);
+      }
+    }
+
+    SVG = 'data:image/svg+xml,' + SVGCharacterArray.join('').trim();
   }
 
   else {
