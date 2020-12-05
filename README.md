@@ -47,6 +47,7 @@ const SVGtoDataURL = (SVG) => {
     SVG = SVG.replace(/\>\s+\</g, '><');
     SVG = SVG.replace(/\s\/>/g, '/>');
     SVG = SVG.replace(/\"/g, '\'');
+    SVG = SVG.trim();
 
     const SVGCharacterArray = SVG.split('');
 
@@ -58,7 +59,7 @@ const SVGtoDataURL = (SVG) => {
       }
     }
 
-    SVG = 'data:image/svg+xml,' + SVGCharacterArray.join('').trim();
+    SVG = 'data:image/svg+xml,' + SVGCharacterArray.join('');
   }
 
   else {
