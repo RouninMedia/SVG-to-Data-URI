@@ -25,7 +25,7 @@ const SVGtoDataURL = (SVG) => {
 
     for (let i = 0; i < SVGCharacterArray.length; i++) {
 
-      if (SVGCharacterArray[i].match(/[A-Za-z0-9\.\,\;\:\/\_\=\-\~\'\s]/) === null) {
+      if (SVGCharacterArray[i].match(/[A-Za-z0-9\.\,\;\:\/\_\=\-\~\']/) === null) {
 
       	SVGCharacterArray[i] = encodeURIComponent(SVGCharacterArray[i]);
       }
