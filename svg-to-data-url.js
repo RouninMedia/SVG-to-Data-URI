@@ -1,87 +1,39 @@
-const SVGtoDataURL = (SVG) => {
-  
-  // GET SVG TITLE
-  const SVGTitle = mySVG.split('</title>')[0].split('<title>')[1];
-  
-  // VERIFY SVG NAMESPACE
-  const SVGNamespace = SVG.trim().replace(/\s+/g, ' ').substr(0, 39);
-  const SVGNamespaceMatch = '<svg xmlns="http://www.w3.org/2000/svg"';
-  const SVGNamespaceMatches = (SVGNamespace === SVGNamespaceMatch) ? true : false;
+const SVGToDataURL = (SVG) => {
 
-  // VERIFY SVG REPRESENTS WELL-FORMED XML
-  const XMLParser = new DOMParser();
-  const parsedDocument = XMLParser.parseFromString(SVG, 'image/svg+xml');
-  const wellFormedXML = (parsedDocument.documentElement.nodeName.indexOf('parsererror') < 0) ? true : false;
+  let output;
+  const { SVGNamespaceMatches, wellFormedXML, parsedDocument } = validateSVG(SVG);
 
-  // CONVERT SVG INTO DATA URL
+  // ASSIGN TO OUTPUT: SVG CONVERTED INTO DATA URL
   if ((SVGNamespaceMatches === true) && (wellFormedXML === true)) {
-  
-    SVG = SVG.replace(/(\s*\n)+\s*/g, ' ');
-    SVG = SVG.replace(/\>\s+\</g, '><');
-    SVG = SVG.replace(/\s\/>/g, '/>');
-    SVG = SVG.replace(/\"/g, '\'');
-    SVG = SVG.trim();
 
-    const SVGCharacterArray = SVG.split('');
+  	dataURL = SVG;
+    dataURL = dataURL.replace(/(\s*\n)+\s*/g, ' ');
+    dataURL = dataURL.replace(/\>\s+\</g, '><');
+    dataURL = dataURL.replace(/\s\/>/g, '/>');
+    dataURL = dataURL.replace(/\"/g, '\'');
+    dataURL = dataURL.trim();
 
-    for (let i = 0; i < SVGCharacterArray.length; i++) {
+    const characterArray = dataURL.split('');
 
-      if (SVGCharacterArray[i].match(/[A-Za-z0-9\.\,\;\:\/\*\-\=\_\~\'\!\$\@]/) === null) {
+    for (let i = 0; i < characterArray.length; i++) {
 
-      	SVGCharacterArray[i] = encodeURIComponent(SVGCharacterArray[i]);
+      if (characterArray[i].match(/[A-Za-z0-9\.\,\;\:\/\*\-\=\_\~\'\!\$\@]/) === null) {
+
+      	characterArray[i] = encodeURIComponent(characterArray[i]);
       }
     }
 
-    SVG = 'data:image/svg+xml,' + SVGCharacterArray.join('');
+    dataURL = 'data:image/svg+xml,' + characterArray.join('');
+
+    output = dataURL;
   }
 
+
+  // ELSE ASSIGN TO OUTPUT: ASHIVA CONSOLE WITH ANALYSIS OF SVG CODE
   else {
-  
-    SVG = '';
-    SVG += '\n\n<!--\n\n';
-    SVG += '  ⚠️ Ashiva Console:\n\n';
 
-    if (SVGTitle !== undefined) {
-
-      SVG += '  ⚠️ Issue: SVG Document with title "' + SVGTitle + '" is not validating as an SVG.\n\n';
-    }
-
-    else {
-
-      SVG += '  ⚠️ Issue: SVG Document is not validating as an SVG.\n\n';
-    }
-
-    switch (true) {
-
-      case ((SVGNamespaceMatches === false) && (wellFormedXML === false)) :
-        SVG += '  ⚠️ Analysis: This SVG lacks a valid SVG Namespace AND this SVG is not well-formed XML.\n\n';
-        break;
-
-      case (SVGNamespaceMatches === false) :
-        SVG += '  ⚠️ Analysis: This SVG lacks a valid SVG Namespace.\n\n';
-        break;
-
-      case (wellFormedXML === false) :
-        SVG += '  ⚠️ Analysis: This SVG is not well-formed XML.\n\n';
-        break;
-    }
-
-
-    if (SVGNamespaceMatches === false) {
-
-      SVG += '  ⚠️ Next Step: Ensure this SVG begins with a valid namespace:\n\n';
-      SVG += '      xmlns="http://www.w3.org/2000/svg"\n\n';
-    }
-
-
-    if (wellFormedXML === false) {
-
-      SVG += '  ⚠️ Next Step: Fix the XML of this SVG by following the error report below.\n\n';
-      SVG += '  ⚠️ Error Report: ' + parsedDocument.documentElement.textContent.replace(/\n/g, '\n\n      ') + '\n\n';
-    }
-
-    SVG += '\n\n-->\n\n';
+    output = consoleSVG({SVG, parsedDocument, SVGNamespaceMatches, wellFormedXML});
   }
 
-  return SVG;
+  return output;
 }
