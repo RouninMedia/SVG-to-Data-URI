@@ -1,12 +1,14 @@
 # SVG to Data URL
 
-The function `SVGtoDataURL(svg)` converts any SVG into a **Data URL**.
+The function `SVGtoDataURL(svg)` converts any **valid SVG** into a **Data URL**.
 
-Before it does so, it verifies that the string it has been given to process is a **valid SVG**.
+The function `dataURLtoSVG(dataURL)` converts a **Data URL** which satisfies certain criteria into a **valid SVG**.
 
 ______
 
-## Step 1
+## SVG to Data URL Function
+
+### Step 1
 
 The function `SVGtoDataURL(svg)` verifies that the string passed to the function:
 
@@ -15,16 +17,12 @@ The function `SVGtoDataURL(svg)` verifies that the string passed to the function
 
 If either or both conditions are not met, the `SVGtoDataURL(svg)` function will return a verbose error detailing how the string may be fixed.
 
-## Step 2
+### Step 2
 
 If both the conditions above are met, the `SVGtoDataURL(svg)` function returns the validated SVG as a **Data URL**.
 
-_____
-
-## `SVGtoDataURL(svg)` Function
-
+### `SVGtoDataURL(svg)` :
 ```
-
 const SVGtoDataURL = (SVG) => {
   
   // GET SVG TITLE
