@@ -6,7 +6,7 @@ const SVGToDataURL = (SVG) => {
   // ASSIGN TO OUTPUT: SVG CONVERTED INTO DATA URL
   if ((SVGNamespaceMatches === true) && (wellFormedXML === true)) {
 
-  	dataURL = SVG;
+    let dataURL = SVG;
     dataURL = dataURL.replace(/(\s*\n)+\s*/g, ' ');
     dataURL = dataURL.replace(/\>\s+\</g, '><');
     dataURL = dataURL.replace(/\s\/>/g, '/>');
