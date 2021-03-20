@@ -8,8 +8,12 @@ const SVGToDataURL = (SVG) => {
 
     let dataURL = SVG;
     dataURL = dataURL.replace(/(\s*\n)+\s*/g, ' ');
-    dataURL = dataURL.replace(/\>\s+\</g, '><');
+    dataURL = dataURL.replace(/\s+\{/g, '{');
+    dataURL = dataURL.replace(/\}\s+/g, '}');
+    dataURL = dataURL.replace(/\:\s+/g, ':');
+    dataURL = dataURL.replace(/\,\s+/g, ',');
     dataURL = dataURL.replace(/\s\/>/g, '/>');
+    dataURL = dataURL.replace(/\>\s+\</g, '><');
     dataURL = dataURL.replace(/\"/g, '\'');
     dataURL = dataURL.trim();
 
